@@ -1,0 +1,63 @@
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+a{
+	text-decoration: none;
+}
+.block-manga{
+	width: 250px;
+	height: 434px;
+	display:inline-block
+}
+.card-manga{
+	font-family: 'Cabin', sans-serif;
+	background-color: #1f1c1c;
+	width: 250px;
+	height: 354px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius:10px ;
+	border-bottom-left-radius:10px ;
+}
+.img-manga-cart{
+	width: 100%;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+/*div div div{*/
+/*    transition: transform 124ms linear; */
+/*	width: 100%;*/
+/*	height: auto;*/
+/*    display: block; !* Убираем полосу под картинкий *!*/
+/*}*/
+/*div div:hover div{*/
+/*    transform: scale(1.02);*/
+/*}*/
+
+.card-title{
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	padding: 5px;
+}
+.title-manga{
+	font-family: 'Cabin', sans-serif;
+	background-color: #1f1c1c;
+	width: 250px;
+	height: 80px;
+	border-bottom-right-radius:10px ;
+	border-bottom-left-radius:10px ;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}
+.container_manga{
+	margin-top: 30px;
+}
+.list-manga{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
