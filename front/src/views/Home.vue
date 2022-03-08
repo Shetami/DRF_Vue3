@@ -23,20 +23,18 @@
 </nav>
 </div>
 <div class="container-list">
-  <div class="mangas">
       <div class="list-manga">
-<div class="container_manga">
-	<div class="block-manga">
+<div class="container_manga" v-for="post in ContentList" v-bind:key="post.id">
+	<div class="block-manga" >
 	<div class="card-manga">
 		<a href="#">
-		<img class="img-manga-cart" src='../../public/1.png' alt="">
+		<img class="img-manga-cart" v-bind:src='post.image' alt="">
 		</a>
 	</div>
 	<div class="title-manga">
 	<a href="">
-	<div class="card-title">Kimetsu no Yaba</div>
+	<div class="card-title">{{post.title}}</div>
 	</a>
-	</div>
 	</div>
 </div>
 
@@ -47,7 +45,7 @@
 
 <script>
 
-
+import axios from 'axios';
 export default {
   name: "Home",
   data(){
@@ -55,7 +53,19 @@ export default {
       ContentList: []
     }
   },
-
+  mounted() {
+    this.getContentList()
+    },
+  methods:{
+    getContentList(){
+      axios.get('/home/').then(response=>{
+        this.ContentList = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+  }
 }
 
 
@@ -85,13 +95,13 @@ a{
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
-div div div div div{
+div div div div div div{
   transition: transform 124ms linear;
 	width: 100%;
 	height: auto;
   display: block; /* Убираем полосу под картинкий */
 }
-div div div div:hover div{
+div div div div div:hover div{
   transform: scale(1.02);
 }
 .card-title{

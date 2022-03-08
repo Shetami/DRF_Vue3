@@ -3,8 +3,13 @@ from . import models
 
 
 class UserAuthSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = models.AuthUser
-        fields = "__all__"
+        fields = [
+            'nickname',
+            'planned',
+            'read_list',
+            'favorites_author',
+            'favorites_tag',
+        ]

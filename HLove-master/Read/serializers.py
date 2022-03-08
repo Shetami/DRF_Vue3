@@ -6,6 +6,7 @@ class MangaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
+            "id",
             "title",
             "slug",
             "image",

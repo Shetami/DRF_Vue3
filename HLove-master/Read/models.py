@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -31,10 +32,6 @@ class MangaTitle(models.Model):
         return self.title
 
 
-class Rating(models.Model):
-    rating = models.FloatField(max_length=10)
-
-
 class Author(models.Model):
     name = models.CharField("Автор", max_length=50, unique=True)
     slug = models.SlugField("URL", max_length=50, unique=True)
@@ -58,17 +55,32 @@ class Character(models.Model):
 
 
 class Post(models.Model):
-    manga_title = models.ForeignKey(MangaTitle, on_delete=models.CASCADE, related_name="post", verbose_name="Название тайтла")
+    manga_title = models.ForeignKey(
+        MangaTitle,
+        on_delete=models.CASCADE,
+        related_name="post",
+        verbose_name="Название тайтла"
+    )
     title = models.CharField("Название", max_length=50)
     slug = models.SlugField("URL", max_length=50, unique=True)
     image = models.ImageField("Постер", upload_to="posters/post", blank=True)
     tags = models.ManyToManyField(Tag, max_length=50)
-    author = models.OneToOneField(Author, on_delete=models.SET_NULL, related_name="author", verbose_name="Автор", null=True)
-    language = models.OneToOneField(Language, on_delete=models.SET_NULL, verbose_name="Язык", related_name="languages", null=True)
-    characters = models.ManyToManyField(Character, verbose_name="Герой")
+    author = models.OneToOneField(
+        Author,
+        on_delete=models.SET_NULL,
+        related_name="author",
+        verbose_name="Автор",
+        null=True
+    )
+    language = models.OneToOneField(
+        Language,
+        on_delete=models.SET_NULL,
+        verbose_name="Язык",
+        related_name="languages",
+        null=True)
+    characters = models.ManyToManyField(Character, verbose_name="Герой", default="None")
     description = models.TextField("Описание", max_length=500)
-    rating = models.OneToOneField(Rating, on_delete=models.CASCADE)
-    reviews = models.TextField(max_length=250, verbose_name="Отзывы")
+    users_mtm = models.ManyToManyField(User, through='Rating', related_name='post_mtm', default=0)
 
     def __str__(self):
         return self.title
@@ -94,4 +106,23 @@ class Favorites(models.Model):
     slug = models.SlugField("URL", max_length=50)
 
 
+class Rating(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    review = models.TextField(max_length=1000, default=None)
+    rate = models.PositiveSmallIntegerField(choices=RATING_CHOICES)
 
+    def __str__(self):
+        return f'{self.user.name}:{self.post.name}, {self.rate}'

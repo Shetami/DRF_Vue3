@@ -23,7 +23,7 @@ class MangaList(generics.ListAPIView):
 class MangaDetailView(generics.RetrieveAPIView):
 
     lookup_field = "slug"
-    queryset = Post.objects.filter()
+    queryset = Post.objects.all()
     serializer_class = MangaDetailSerializer
 
 

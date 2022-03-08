@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'corsheaders',
     'rest_framework',
     'django_filters',
     'rest_framework.authtoken',
@@ -47,15 +48,21 @@ INSTALLED_APPS = [
     'rest_framework_json_api',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'HLove.urls'
 
@@ -91,17 +98,17 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser',
         'rest_framework.permissions.AllowAny',
     ),
-    'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_PAGINATION_CLASS':
-        'rest_framework_json_api.pagination.PageNumberPagination',
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
+    # 'PAGE_SIZE': 10,
+    # 'DEFAULT_PAGINATION_CLASS':
+    # 'rest_framework_json_api.pagination.PageNumberPagination',
+    # 'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    # 'DATETIME_FORMAT': "%d.%m.%Y %H:%M:%S",
 }
 
 JWT_AUTH = {
