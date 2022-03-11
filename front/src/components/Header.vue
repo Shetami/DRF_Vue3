@@ -22,7 +22,7 @@
             </ul>
           </li>
           <li><a href="#">О нас</a></li>
-          <li><a href="#">Войти</a></li>
+          <li><a href="#" @click="showAuthInfo">Войти</a></li>
           <li><a href="#">Регистрация</a></li>
           <li><a href="#">Профиль</a></li>
           <li><a href="#">Выйти</a></li>
@@ -37,11 +37,34 @@
     </div>
   <div class="main-banner bg bg1"></div>
   </header>
+  <SignIn
+      v-if="IsInfo"
+      @closeAuth="closeInfo"
+  />
+
 </template>
 
 <script>
+import SignIn from "../views/SignIn";
+
 export default {
-  name: "Header"
+  name: "Header",
+  components: {
+    SignIn,
+  },
+  methods:{
+    showAuthInfo(){
+      this.IsInfo=true;
+    },
+    closeInfo(){
+      this.IsInfo=false;
+    }
+  },
+  data(){
+    return{
+      IsInfo: false
+    }
+  }
 }
 </script>
 
