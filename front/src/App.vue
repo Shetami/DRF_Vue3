@@ -37,6 +37,7 @@ export default {
   @import "assets/css/auth.css";
   @import "assets/css/swipe_default.css";
   @import "assets/css/swiper.min.css";
+  @import "assets/css/profile.css";
 
 #app{
   min-height: 100vh;

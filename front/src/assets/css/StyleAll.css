@@ -48,12 +48,12 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 
-.wrapper{
-  background: #111;
-  position: fixed;
-  width: 100%;
-  z-index: 999999;
-}
+/*.wrapper{*/
+/*  background: #111;*/
+/*  position: fixed;*/
+/*  width: 100%;*/
+/*  z-index: 999999;*/
+/*}*/
 .wrapper nav{
   position: relative;
   display: flex;
@@ -94,7 +94,7 @@ nav .content .links{
 }
 .content .links li a:hover,
 .content .links li label:hover{
-  background: #44464f;
+    background: #44464f;
 }
 .wrapper .search-icon,
 .wrapper .menu-icon{
@@ -360,10 +360,7 @@ nav .content .links{
     color: #000000;
 }
 
-center{
-    display: block;
-    text-align: webkit-center;
-}
+
 /*detail*/
 .container-content{
 
@@ -640,7 +637,7 @@ footer{
   font-size: 1.0625rem;
   background: #151515;
   padding-left: 10px;
-  border: 1px solid #222222;
+  border: 1px solid #2c2c2d;
 }
 .right form input:focus,
 .right form textarea:focus{

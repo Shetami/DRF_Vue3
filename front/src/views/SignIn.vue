@@ -168,6 +168,8 @@ export default {
   max-width: 390px;
   background: #fff;
   padding: 30px;
+  position: fixed;
+  z-index: 999999;
   border-radius: 5px;
   box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
 }
