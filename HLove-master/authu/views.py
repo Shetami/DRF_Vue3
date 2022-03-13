@@ -22,6 +22,7 @@ class UserViewCreate(ListCreateAPIView, mixins.UpdateModelMixin):
 
 
 class UserProfileDetailView(RetrieveUpdateDestroyAPIView):
+    lookup_field = 'slug'
     queryset=AuthUser.objects.all()
     serializer_class=UserAuthSerializer
     permission_classes=[IsOwnerProfileOrReadOnly,IsAuthenticated]
